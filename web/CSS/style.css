@@ -1,0 +1,170 @@
+/* Header*/
+header h1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgb(248, 146, 21);
+    text-align: center;
+    font-size: 50px;
+    font-family: Emblema One;
+}
+
+/*footer*/
+
+footer{
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 100%; 
+    color: white;
+}
+
+/* Obecný reset pro HTML a body */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Archivo Black', sans-serif;    
+    color: white;
+    background: linear-gradient(to bottom,grey,rgba(0, 0, 0, 0.473)),
+        url("../../img/Grandhotel_U_Supa.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: bisque;
+    font-size: 40px;
+}
+section{
+    text-align: center;
+}
+
+/* Styly pro formuláře a prvky formuláře */
+.form {
+    min-height: 90vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"]{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    color: white;
+    background-color: transparent;
+    font-family: 'Archivo Black', sans-serif;
+}
+select {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+
+button {
+    width: 150px;
+    height: 45px;
+    font-size: 15px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Odkazy */
+.back{
+    text-decoration: none;
+    color: white;
+}
+a {
+    text-decoration: none;
+    color: rgba(0, 214, 252, 0.781);
+}
+
+/* Zprávy o chybách */
+.error {
+    color: rgb(255, 0, 64);
+}
+
+/* Responsivita */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 40px;
+    }
+
+    h2 {
+        font-size: 30px;
+    }
+}
+/* Responsivita pro formulář */
+@media (max-width: 768px) {
+    .form {
+        min-height: 70vh; 
+    }
+
+    label {
+        font-size: 14px; 
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    select {
+        font-size: 14px; 
+    }
+
+    button {
+        width: 120px; 
+        height: 30px; 
+        font-size: 14px; 
+    }
+}
+
+

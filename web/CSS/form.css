@@ -1,0 +1,57 @@
+/* Styly pro formulář */
+.form {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="email"] {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    color: white;
+    background-color: transparent;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+select {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 15px;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    color: black;
+    font-family: 'Archivo Black', sans-serif;
+}
+
+button {
+    width: 150px;
+    height: 35px;
+    font-size: 15px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s linear;
+    font-family: 'Archivo Black', sans-serif;
+}
+button:hover {
+    background-color: #0056b3;
+}
