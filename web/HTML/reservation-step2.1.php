@@ -54,28 +54,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_part2"])) {
     $phone = isset($_POST["phone"]) ? $_POST["phone"] : null;
     $email = isset($_POST["email"]) ? $_POST["email"] : null;
 
-// Uložení dat do session proměnných, pouze pokud byla zadána
     if ($roomName !== null) {
         $_SESSION["room_name"] = $roomName;
     }
-    if ($name !== null) {
-        $_SESSION["name"] = $name;
+    if (!empty($name)) {
+        // Kontrola, zda jméno odpovídá požadovaným kritériím
+        if (preg_match('/^[a-zA-Z][a-zA-Z0-9]{2,}(?:[a-zA-Z0-9 -]*)$/', $name)) {
+            // Platné jméno
+            $_SESSION["name"] = $name;
+            $correctName=true;
+        } else {
+            // Neplatné jméno
+            $correctName=false;
+        }
     }
-    if ($phone !== null) {
+    if ($phone !== null && strlen($phone)>=9) {
         $_SESSION["phone"] = $phone;
     }
-    if ($email !== null) {
-        $_SESSION["email"] = $email;
-    }
+    if (!empty($email)) {
+        // Kontrola, zda e-mail odpovídá požadovaným kritériím
+        if (preg_match('/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/', $email)) {
+            // Platná e-mailová adresa
+            $_SESSION["email"] = $email;
+            $correctEmail=true;
+        } else {
+            // Neplatná e-mailová adresa
+            $correctEmail=false;
+        }
+    }    
+
     // Přesměrování na třetí krok
-        if (isset($roomName) && !empty($roomName) && isset($name) && !empty($name) && isset($phone) && !empty($phone) && isset($email) && !empty($email)) {
+        if (isset($roomName) && !empty($roomName) && isset($name) && !empty($name) && $correctName===true && isset($phone) && !empty($phone) && strlen($phone) >= 9 && isset($email) && !empty($email)&&$correctEmail===true) {
             header('Location: reservation-step3.1.php');
             exit;
         }
         elseif (empty($roomName)){
             $message = "<p class='error'></br>Musíte si vybrat pokoj.</p>";
         }
-}
+        elseif($correctName===false){
+            $nameError = "<p class='error'></br>Bylo zadáno neplatné jméno.
+                                           </br>Jméno musí začínat písmenem a obsahovat alespoň 3 po sobě jdoucí alfanumerické znaky.
+                                           </br>Zároveň nesmí obsahovat žádné speciální znaky (*/+_%$# atd...)</p>";
+        }
+        elseif(strlen($phone) < 9){
+            $phoneError = "<p class='error'></br>Bylo zadáno neplatné telefonní číslo.
+                                            </br>Telefonní číslo musí obsahovat alespoň 9 číslic.</p>";
+        }
+        elseif($correctEmail===false){
+            $emailError = "<p class='error'></br>Zadaná emailová adresa obsahovala některé neplatné znaky nebo nebyla úplná.</p>";
+        }
+    }
+        
+
 ?>
 
 <!DOCTYPE html>
@@ -150,6 +180,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit_part2"])) {
                 <?php
                     if (isset($message)) {
                         echo "<p>$message</p>";
+                    }
+                    if (isset($nameError)) {
+                        echo "<p>$nameError</p>";
+                    }
+                    if (isset($phoneError)) {
+                        echo "<p>$phoneError</p>";
+                    }
+                    if (isset($emailError)) {
+                        echo "<p>$emailError</p>";
                     }
                 ?>
                 <?php
